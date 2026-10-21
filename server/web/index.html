@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>game-smoke 测试看板</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div>
+          <h1>game-smoke</h1>
+          <p class="sub">小游戏自动化测试看板 · 数据来自 server/data/smoke.db</p>
+        </div>
+        <button id="refresh" type="button" class="btn ghost">刷新</button>
+      </header>
+
+      <section class="stats" id="stats"></section>
+
+      <div class="section-head">
+        <h2>游戏</h2>
+      </div>
+      <section class="games" id="games"></section>
+
+      <div class="section-head">
+        <h2>运行历史</h2>
+        <form class="filters" id="filters">
+          <select id="game" aria-label="游戏"><option value="">全部游戏</option></select>
+          <select id="suite" aria-label="用例集">
+            <option value="">全部用例集</option>
+            <option value="smoke">smoke</option>
+            <option value="explore">explore</option>
+          </select>
+          <select id="status" aria-label="状态">
+            <option value="">全部状态</option>
+            <option value="success">成功</option>
+            <option value="failed">失败</option>
+          </select>
+          <input id="limit" type="number" value="20" min="1" max="200" aria-label="显示条数" title="最多显示多少条运行记录" />
+          <button type="submit" class="btn">筛选</button>
+        </form>
+      </div>
+
+      <section class="runs" id="runs">
+        <div class="placeholder">加载中…</div>
+      </section>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

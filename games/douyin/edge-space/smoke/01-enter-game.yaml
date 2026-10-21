@@ -1,0 +1,9 @@
+# 冒烟 01：从抖音搜索进入《边缘空间》并加载主界面
+# 前提：手机解锁亮屏、抖音已登录、adb 在线
+# 进入链（冷启动/深链/点卡片/等主菜单）与 AI 上下文都由 game.enter 按 gameKey 注入
+cases:
+  - name: 抖音搜索进入边缘空间并加载主界面
+    steps:
+      - game.enter:
+          gameKey: douyin/edge-space
+      - aiAssert: 屏幕上能看到"新游戏"和"继续游戏"菜单文字，没有崩溃弹窗或黑屏

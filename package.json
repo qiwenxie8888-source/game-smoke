@@ -1,0 +1,24 @@
+{
+  "name": "game-smoke",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "midscene-test --project smoke",
+    "explore": "midscene-test --project explore",
+    "nodes": "midscene-test nodes",
+    "typecheck": "tsc --noEmit",
+    "dashboard": "node scripts/gen-dashboard.mjs",
+    "dashboard:open": "node scripts/gen-dashboard.mjs --open",
+    "postinstall": "midscene-test nodes"
+  },
+  "engines": {
+    "node": "^20.19.0 || ^22.12.0 || >=24.0.0"
+  },
+  "devDependencies": {
+    "@midscene/test": "1.15.2",
+    "@midscene/android": "1.15.2",
+    "@types/node": "^20.0.0",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.8.3"
+  }
+}

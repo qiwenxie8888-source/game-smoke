@@ -1,0 +1,200 @@
+:root {
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --line: #e5e8ee;
+  --text: #1b2430;
+  --muted: #6b7684;
+  --faint: #98a2b3;
+  --ok: #12805c;
+  --ok-bg: #e7f6ef;
+  --bad: #c0392b;
+  --bad-bg: #fdecea;
+  --warn: #92610a;
+  --warn-bg: #fdf3d8;
+  --accent: #2563eb;
+  --shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-hover: 0 6px 18px rgba(16, 24, 40, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.5 "Segoe UI", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page { max-width: 1080px; margin: 0 auto; padding: 32px 24px 72px; }
+
+header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+h1 { margin: 0; font-size: 22px; letter-spacing: -0.01em; }
+h2 { margin: 0; font-size: 14px; font-weight: 600; color: var(--muted); letter-spacing: 0.02em; }
+.sub { margin: 6px 0 0; color: var(--faint); font-size: 12.5px; }
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 32px 0 12px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  appearance: none;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, box-shadow 0.15s;
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn.ghost { background: transparent; }
+.btn.solid { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.solid:hover { color: #fff; filter: brightness(1.05); }
+
+/* 顶部统计 */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+
+.stat {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.stat .label { color: var(--muted); font-size: 12.5px; }
+.stat .value { margin-top: 8px; font-size: 26px; font-weight: 650; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat .meta { margin-top: 4px; color: var(--faint); font-size: 12px; }
+
+/* 游戏卡片 */
+.games { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+
+.game-card {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.game-card .name { font-size: 15px; font-weight: 600; }
+.game-card .key { margin-top: 2px; color: var(--faint); font-size: 12px; font-family: Consolas, "Cascadia Mono", monospace; }
+.game-card .row { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 12.5px; color: var(--muted); }
+
+/* 运行历史：卡片列表 */
+.runs { display: grid; gap: 10px; }
+
+.run {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  padding: 16px 18px 16px 22px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+}
+.run:hover { box-shadow: var(--shadow-hover); border-color: #d7dce4; }
+.run::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 12px; bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--faint);
+}
+.run.success::before { background: var(--ok); }
+.run.failed::before { background: var(--bad); }
+
+.run-head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.run-time { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.run-time .abs { color: var(--faint); font-size: 12px; }
+.run-suite {
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: #46536a;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+
+.run-title { margin-top: 8px; font-size: 15.5px; font-weight: 600; }
+.run-title .muted { font-weight: 400; font-size: 13px; }
+
+.run-metrics { display: flex; gap: 20px; margin-top: 10px; }
+.metric { display: flex; align-items: baseline; gap: 5px; font-size: 12.5px; color: var(--muted); }
+.metric b { font-size: 15px; font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
+.metric.ok b { color: var(--ok); }
+.metric.bad b { color: var(--bad); }
+
+.run-actions { display: flex; align-items: flex-start; gap: 8px; }
+
+.badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 500; }
+.badge.ok { background: var(--ok-bg); color: var(--ok); }
+.badge.bad { background: var(--bad-bg); color: var(--bad); }
+.badge.warn { background: var(--warn-bg); color: var(--warn); }
+.badge.muted { background: #eef1f5; color: var(--muted); }
+
+.run-detail {
+  grid-column: 1 / -1;
+  margin-top: 12px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--line);
+}
+.run-detail .meta { display: flex; flex-wrap: wrap; gap: 16px; color: var(--faint); font-size: 12px; margin-bottom: 10px; }
+
+.case-list { display: grid; gap: 6px; }
+.case {
+  display: grid;
+  grid-template-columns: 8px minmax(140px, 1.4fr) auto minmax(0, 1.6fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: #fafbfc;
+  font-size: 13px;
+}
+.case .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--faint); }
+.case .dot.ok { background: var(--ok); }
+.case .dot.bad { background: var(--bad); }
+.case .dot.warn { background: #d8a13a; }
+.case .name { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.case .suite, .case .file { color: var(--faint); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.case .file { font-family: Consolas, "Cascadia Mono", monospace; }
+
+/* 筛选 */
+.filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.filters select, .filters input {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+}
+.filters input { width: 74px; }
+.filters select:focus, .filters input:focus { outline: 2px solid rgba(37, 99, 235, 0.18); outline-offset: 1px; }
+
+.placeholder, .empty { padding: 28px; text-align: center; color: var(--faint); font-size: 13px; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.muted { color: var(--muted); }
+.hidden { display: none; }
