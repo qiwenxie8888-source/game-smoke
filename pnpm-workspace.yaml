@@ -1,6 +1,10 @@
 allowBuilds:
   esbuild: true
   sharp: true
+  '@ffmpeg-installer/linux-x64': true
+  '@ffmpeg-installer/win32-x64': true
 onlyBuiltDependencies:
   - esbuild
   - sharp
+  - '@ffmpeg-installer/linux-x64'
+  - '@ffmpeg-installer/win32-x64'
