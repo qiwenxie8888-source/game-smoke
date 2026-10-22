@@ -40,8 +40,9 @@ function findPython() {
   return isWindows ? 'python' : 'python3';
 }
 
-// Windows 上 pnpm 是可执行的 .cmd，直接 spawn 'pnpm' 会 ENOENT
-const pnpmCommand = () => (isWindows ? 'pnpm.cmd' : 'pnpm');
+// Node 在 Windows 上不允许直接 spawn .cmd（会报 EINVAL），
+// 所以不走 pnpm，直接用 node 执行 midscene-test 的 bin 入口
+const MIDSCENE_BIN = resolve(projectRoot, 'node_modules/@midscene/test/bin/midscene-test');
 
 const python = findPython();
 
@@ -65,12 +66,7 @@ function step(label, command, commandArgs) {
 
 let testOk = true;
 if (!skipTest) {
-  testOk = step('1/3 跑测试（project=' + project + '）', pnpmCommand(), [
-    'exec',
-    'midscene-test',
-    '--project',
-    project,
-  ]);
+  testOk = step('1/3 跑测试（project=' + project + '）', process.execPath, [MIDSCENE_BIN, '--project', project]);
 } else {
   console.log('跳过测试（--skip-test）');
 }
